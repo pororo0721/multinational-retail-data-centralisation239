@@ -1,24 +1,31 @@
 import yaml
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, inspect
 
 class DatabaseConnector:
 
-    def read_db_creds():
-        with open('db_creds.yaml','r') as file:
+    def __init__(self):
+        self.conn=None
+
+    def read_db_creds(self, file_path="db_creds.yaml"):
+        with open(file_path,'r') as file:
             db_creds = yaml.safe_load(file)
         return db_creds
 
     
     def init_db_engine(self):
         db_creds=self.read_db_creds()
-        engine= create_engine(f"postgresql://{db_creds['RDS_USER']}:{db_creds['RDS_PASSWORD']}@{db_creds['RDS_HOST']}:{db_creds['RDS_PORT']}/{db_creds['RDS_DATABASE']}")
-        return engine
+        db_url= f"postgresql://{db_creds['RDS_USER']}:{db_creds['RDS_PASSWORD']}@{db_creds['RDS_HOST']}:{db_creds['RDS_PORT']}/{db_creds['RDS_DATABASE']}"
+        self.conn = create_engine(db_url)
 
     def list_db_tables(self):
-        engine = self.init_db_engine()
-        tables = engine.tables_names()
+        inspector = inspect(self.conn)
+        tables = inspector.get_table_names()
         return tables
 
     def upload_to_db(self, df, tables_names):
-        # Implement logic to upload DataFrame to the specified database table
-        pass        
+        data.to_sql(tables_names, self.conn, if_exists='replace', index=False)   
+
+
+    def disconnect(self):
+        if self.conn:
+            self.conn.dispose()        
