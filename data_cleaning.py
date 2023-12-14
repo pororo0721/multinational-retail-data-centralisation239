@@ -1,3 +1,5 @@
+import pandas as pd
+
 class DataCleaning:
     @staticmethod
     def clean_csv(data):
@@ -12,4 +14,8 @@ class DataCleaning:
     @staticmethod
     def clean_s3_data(data):
     # Method to clean data extracted from an S3 bucket  
+        pass
+
+    def clean_user_data(data):
+    # Implement your data cleaning logic here
         pass
