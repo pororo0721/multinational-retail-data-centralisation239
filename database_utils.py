@@ -1,7 +1,7 @@
 import yaml
 from sqlalchemy import create_engine
 
-class DatabaseConncector:
+class DatabaseConnector:
 
     def read_db_creds():
         with open('db_creds.yaml','r') as file:
