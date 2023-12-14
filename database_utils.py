@@ -1,16 +1,13 @@
+import yaml
+from sqlalchemy import create_engine
+
 class DatabaseConncector:
-    def __init__(self, db_params):
-        self.db_params=db_params
-        self.conn= None
 
-    def connect(self):
-        # Method to establish a database connection
-        pass
+    def read_db_creds():
+        with open('db_creds.yaml','r') as file:
+            db_creds = yaml.safe_load(file)
+        return db_creds
 
-    def upload_data(self,data):
-        # Method to upload data to the database
-        pass    
+    
 
-    def disconnect(self):
-        # Method to close the database connection
-        pass
+        
