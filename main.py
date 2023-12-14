@@ -1,16 +1,27 @@
+# Example Usage
 from database_utils import DatabaseConnector
 from data_extraction import DataExtractor
 from data_cleaning import DataCleaning
 
 # Step 1
-db_creds= yaml.safe_load(open("db_creds.yaml"))
+db_connector = DatabaseConnector()
+db_connector.init_db_engine()
 
 # Step 2
-db_connector= DatabaseConnector(db_creds)
+tables = db_connector.list_db_tables()
+print("Available tables:", tables)
 
 # Step 3
-db_connector.connect()
+data_extractor = DataExtractor()
+user_data = data_extractor.read_rds_table(db_connector)
 
 # Step 4
-tables = db_connector.list_db_tables()
-print("Abailable tables:", tables)
+data_cleaning = DataCleaning()
+cleaned_user_data= data_cleaning.cleaned_user_data(user_data)
+
+# Step 5
+db_connector.upload_to_db(cleaned_user_data, 'dim_users')
+
+# Step 6
+db_connector.disconnect()
+

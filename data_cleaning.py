@@ -18,4 +18,4 @@ class DataCleaning:
 
     def clean_user_data(data):
     # Implement your data cleaning logic here
-        pass
+        return data
