@@ -35,8 +35,17 @@ class DatabaseConnector:
 # inherit from DatabaseConnector
 class DatabaseUploader(DatabaseConnector):
     def upload_card_data(self, data, table_name):
-        if not self.conn or not self.conn.closed:
-            print("Database connection is not established.")
-            return
-        
-        self.upload_to_db(data, table_name)            
+        try:
+            self.init_db_engine()
+            if not self.conn or not self.conn.closed:
+                print("Database connection is not established.")
+                return
+
+            print(f"Uploading data to {table_name} table.")
+            self.upload_to_db(data, table_name)
+            print("Data upload successful.")
+        except Exception as e:
+            print(f"Error uploading data to the database: {e}")      
+        finally:
+            self.disconnect()
+            print("Disconnected from the database.")              
