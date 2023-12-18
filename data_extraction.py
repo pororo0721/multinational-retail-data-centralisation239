@@ -8,7 +8,7 @@ class DataExtractor:
         data = pd.read_sql(query, db_connector.conn)
         return data
 
-    def retrieve_pdf_data(pdf_link):
+    def retrieve_pdf_data(self,pdf_link):
         # Method to extract data from a PDF using tabula-py
         try:
             # Use tabula to extract tables from the PDF
@@ -21,7 +21,7 @@ class DataExtractor:
 
         except Exception as e:
             print(f"Error extracting data from PDF: {e}")
-            return None     
+            return None         
 
     @staticmethod
     def extract_csv(file_path):
