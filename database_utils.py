@@ -11,9 +11,12 @@ class DatabaseConnector:
         return db_creds
 
     def init_db_engine(self):
-        db_creds = self.read_db_creds()
-        db_url = f"postgresql://{db_creds['RDS_USER']}:{db_creds['RDS_PASSWORD']}@{db_creds['RDS_HOST']}:{db_creds['RDS_PORT']}/{db_creds['RDS_DATABASE']}"
-        self.conn = create_engine(db_url).connect()
+        try:
+            db_creds = self.read_db_creds()
+            db_url = f"postgresql://{db_creds['RDS_USER']}:{db_creds['RDS_PASSWORD']}@{db_creds['RDS_HOST']}:{db_creds['RDS_PORT']}/{db_creds['RDS_DATABASE']}"
+            self.conn = create_engine(db_url).connect()
+        except Exception as e:
+            print(f"Error establishing database connection: {e}")    
 
     def list_db_tables(self):
         inspector = inspect(self.conn)
@@ -26,3 +29,8 @@ class DatabaseConnector:
     def disconnect(self):
         if self.conn:
             self.conn.close()
+
+# inherit from DatabaseConnector
+class DatabaseUploader(DatabaseConnector):
+    def upload_card_data(self, data, table_name):
+        self.upload_to_db(data, table_name)            

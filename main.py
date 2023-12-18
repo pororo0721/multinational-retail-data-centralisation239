@@ -1,11 +1,11 @@
 # Example Usage
-from database_utils import DatabaseConnector
+from database_utils import DatabaseConnector, DatabaseUploader
 from data_extraction import DataExtractor
 from data_cleaning import DataCleaning
 
 # Step 1
-# db_connector = DatabaseConnector()
-# db_connector.init_db_engine()
+db_connector = DatabaseConnector()
+db_connector.init_db_engine()
 
 # Step 2
 # tables = db_connector.list_db_tables()
@@ -34,3 +34,6 @@ card_data= card_data_extractor.retrieve_pdf_data(pdf_link_card)
 card_data_cleaning= DataCleaning()
 cleaned_card_data= card_data_cleaning.clean_card_data(card_data)
 
+# Step 9: Upload cleaned card data to the database
+db_uploader=DatabaseUploader()
+db_uploader.upload_card_data(cleaned_card_data, 'dim_card_details')
