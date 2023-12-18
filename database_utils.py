@@ -31,6 +31,9 @@ class DatabaseConnector:
     def disconnect(self):
         if self.conn:
             self.conn.close()
+            print("Disconnected from the database.")
+            # Reconnect after disconnection
+            self.init_db_engine()
 
 # inherit from DatabaseConnector
 class DatabaseUploader(DatabaseConnector):
