@@ -30,3 +30,7 @@ pdf_link_card=r"C:\Users\Sinhye\Documents\GitHub\multinational-retail-data-centr
 card_data_extractor= DataExtractor()
 card_data= card_data_extractor.retrieve_pdf_data(pdf_link_card)
 
+# Step 8: Clean the card data
+card_data_cleaning= DataCleaning()
+cleaned_card_data= card_data_cleaning.clean_card_data(card_data)
+
