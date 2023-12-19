@@ -27,6 +27,18 @@ class DataExtractor:
             print(f"Error extracting data from PDF: {e}")
             return None
 
+    def list_number_of_stores(self, number_stores_endpoint, header):
+        try:
+            response = requests.get(number_stores_endpoint, header=header)
+            if response.status_code== 200:
+                return response.json().get('count')
+            else:
+                print(f"Failed to retrieve the number of stores. Status code: {response.status_code} ")
+                return None 
+        except Exception as e:
+            print(f"Error retrieving the number of stores:{e}")
+            return None           
+
 
     @staticmethod
     def extract_csv(file_path):
