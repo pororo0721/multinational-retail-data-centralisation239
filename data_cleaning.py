@@ -10,6 +10,11 @@ class DataCleaning:
 
         return cleaned_df 
 
+    def called_clean_store_data(self, store_data):  
+        # This could include handling missing values, remobing duplicates, etc.
+        cleaned_store_data = store_data.dropna()
+        return cleaned_store_data  
+
     @staticmethod
     def clean_csv(data):
         # Method to clean data extracted from CSV   
