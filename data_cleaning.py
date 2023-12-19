@@ -12,8 +12,17 @@ class DataCleaning:
 
     def called_clean_store_data(self, store_data):  
         # This could include handling missing values, remobing duplicates, etc.
-        cleaned_store_data = store_data.dropna()
-        return cleaned_store_data  
+        try:
+            if store_data is not None:
+                cleaned_store_data = store_data.dropna()
+                return cleaned_store_data
+
+            else:
+                print("Error: Store data is None.")
+                return None
+        except Exception as e:
+            print(f"Error cleaning store data: {e}")
+            return None      
 
     @staticmethod
     def clean_csv(data):

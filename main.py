@@ -46,3 +46,7 @@ list_number_of_stores= data_extractor.list_number_of_stores(number_stores_endpoi
 # Step 11: Retrieve store data from the API
 store_endpoint="https://aqj7u5id95.execute-api.eu-west-1.amazonaws.com/prod/store_details/{store_number}"
 store_data= data_extractor.retrieve_stores_data(store_endpoint, headers)
+
+# Step 12: Clean the store data
+store_data_cleaning = DataCleaning()
+cleaned_store_data = store_data_cleaning.called_clean_store_data(store_data)
