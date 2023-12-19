@@ -50,3 +50,11 @@ store_data= data_extractor.retrieve_stores_data(store_endpoint, headers)
 # Step 12: Clean the store data
 store_data_cleaning = DataCleaning()
 cleaned_store_data = store_data_cleaning.called_clean_store_data(store_data)
+
+# Step 13: Upload cleaned store data to the database
+db_uploader=DatabaseUploader()
+
+if cleaned_store_data is not None:
+    db_uploader.upload_to_db(cleaned_store_data, 'dim_store_details')
+else:
+    print("Error: cleaned_store_data is None. Upload to the database skipped.")    
