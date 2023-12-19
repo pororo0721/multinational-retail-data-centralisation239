@@ -38,7 +38,25 @@ class DataExtractor:
                 return None 
         except Exception as e:
             print(f"Error retrieving the number of stores:{e}")
-            return None           
+            return None  
+
+    def retrieve_stores_data(self, store_endpoint, headers):
+        try:
+            response = requests.get(store_endpoint, headers=headers)
+            if response.status_code == 200:
+                stores_data = response.json().get('stores')
+                if stores_data:
+                    df= pd.DataFrame(stores_data)
+                    return df
+                else:
+                    print("No store data foun in the API response.")
+                    return None
+            else:
+                print(f"Failed to retrieve store data. Status code: {response.status_code}")
+                return None
+        except Exception as e:
+            print(f"Error retrieveing store data : {e}")
+            return None                                     
 
 
     @staticmethod

@@ -8,8 +8,8 @@ db_connector = DatabaseConnector()
 db_connector.init_db_engine()
 
 # Step 2
-tables = db_connector.list_db_tables()
-print("Available tables:", tables)
+# tables = db_connector.list_db_tables()
+# print("Available tables:", tables)
 
 # Step 3
 data_extractor = DataExtractor()
