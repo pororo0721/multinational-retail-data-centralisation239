@@ -1,5 +1,6 @@
 import pandas as pd
 import tabula
+import requests
 
 class DataExtractor:
     
@@ -27,9 +28,9 @@ class DataExtractor:
             print(f"Error extracting data from PDF: {e}")
             return None
 
-    def list_number_of_stores(self, number_stores_endpoint, header):
+    def list_number_of_stores(self, number_stores_endpoint, headers):
         try:
-            response = requests.get(number_stores_endpoint, header=header)
+            response = requests.get(number_stores_endpoint, headers=headers)
             if response.status_code== 200:
                 return response.json().get('count')
             else:

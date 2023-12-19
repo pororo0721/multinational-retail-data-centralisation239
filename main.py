@@ -11,8 +11,8 @@ db_connector.init_db_engine()
 tables = db_connector.list_db_tables()
 print("Available tables:", tables)
 
-# # Step 3
-# data_extractor = DataExtractor()
+# Step 3
+data_extractor = DataExtractor()
 # user_data = data_extractor.read_rds_table(db_connector)
 
 # # Step 4
@@ -37,3 +37,8 @@ cleaned_card_data= card_data_cleaning.clean_card_data(card_data)
 # Step 9: Upload cleaned card data to the database
 db_uploader=DatabaseUploader()
 db_uploader.upload_card_data(cleaned_card_data, 'dim_card_details')
+
+# Step 10: Retrieve the number of stores from the API
+number_stores_endpoint=" https://aqj7u5id95.execute-api.eu-west-1.amazonaws.com/prod/number_stores"
+headers={'x-api-key' : 'yFBQbwXe9J3sd6zWVAMrK6lcxxr0q1lr2PT6DDMX'}
+list_number_of_stores= data_extractor.list_number_of_stores(number_stores_endpoint,headers)
