@@ -2,7 +2,7 @@ import pandas as pd
 
 class DataCleaning:
     
-    @staticmethod
+    
     def clean_card_data(self, df):
         # Implement your data cleaning logic for card data here
         # Remove erroneous values, NULL values, or errors with formatting
@@ -12,7 +12,7 @@ class DataCleaning:
 
         return cleaned_df 
 
-    @staticmethod
+    
     def called_clean_store_data(self, store_data):  
         # This could include handling missing values, remobing duplicates, etc.
         try:
@@ -28,7 +28,7 @@ class DataCleaning:
             return None
     
     @staticmethod
-    def convert_product_weights(self, products_df):              
+    def convert_product_weights(products_df):              
         try:
             # Assuming 'weight' column contains weights in different units
             # Implement your logic to convert weight to kg
@@ -40,8 +40,8 @@ class DataCleaning:
 
         except Exception as e:
             print(f"Error converting product weights: {e}")
-            return None    
-    @staticmethod
+            return None 
+
     def convert_to_kg(self, weight):
         # Implement your logic to convert different units to kg
         # Example: 1 g = 0.001 kg, 1 ml = 0.001 kg
