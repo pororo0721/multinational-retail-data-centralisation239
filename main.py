@@ -40,7 +40,8 @@ data_extractor = DataExtractor()
 # db_uploader=DatabaseUploader()
 # db_uploader.upload_card_data(cleaned_card_data, 'dim_card_details')
 
-# Task 5: 
+# Task 5: Extract and clean the details of each store
+
 # Step 1,2: Retrieve the number of stores from the API
 # number_stores_endpoint=" https://aqj7u5id95.execute-api.eu-west-1.amazonaws.com/prod/number_stores"
 # headers={'x-api-key' : 'yFBQbwXe9J3sd6zWVAMrK6lcxxr0q1lr2PT6DDMX'}
