@@ -16,7 +16,7 @@ data_extractor = DataExtractor()
 # user_data = data_extractor.read_rds_table(db_connector)
 
 # # Step 4
-# data_cleaning = DataCleaning()
+data_cleaning = DataCleaning()
 # cleaned_user_data= data_cleaning.cleaned_user_data(user_data)
 
 # # Step 5
@@ -68,3 +68,6 @@ data_extractor = DataExtractor()
 
 # Step 1 : 
 products_df = data_extractor.extract_s3('s3://data-handling-public/products.csv')
+
+# Step 2:
+cleaned_products_df = data_cleaning.convert_product_weights(products_df)
