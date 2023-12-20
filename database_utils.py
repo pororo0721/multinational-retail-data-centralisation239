@@ -3,7 +3,7 @@ from sqlalchemy import create_engine, inspect
 
 class DatabaseConnector:
     def __init__(self):
-        self.conn = None
+        self.conn = None 
 
     def read_db_creds(self, file_path="db_creds.yaml"):
         with open(file_path, 'r') as file:
@@ -15,7 +15,8 @@ class DatabaseConnector:
             db_creds = self.read_db_creds()
             db_url = f"postgresql://{db_creds['RDS_USER']}:{db_creds['RDS_PASSWORD']}@{db_creds['RDS_HOST']}:{db_creds['RDS_PORT']}/{db_creds['RDS_DATABASE']}"
             print(f"Database URL: {db_url}")
-            self.conn = create_engine(db_url).connect()
+            engine = create_engine(db_url, isolation_level="AUTOCOMMIT", pool_pre_ping=True)
+            self.conn = engine.connect()
             print("Database connection established successfully.")
         except Exception as e:
             print(f"Error establishing database connection: {e}")    

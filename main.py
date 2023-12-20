@@ -37,7 +37,7 @@ data_cleaning = DataCleaning()
 # cleaned_card_data= card_data_cleaning.clean_card_data(card_data)
 
 # Step 4: Upload cleaned card data to the database
-# db_uploader=DatabaseUploader()
+db_uploader=DatabaseUploader()
 # db_uploader.upload_card_data(cleaned_card_data, 'dim_card_details')
 
 # Task 5: Extract and clean the details of each store
@@ -75,3 +75,10 @@ cleaned_products_df = data_cleaning.convert_product_weights(products_df)
 # Step 3:
 cleaned_products_df= data_cleaning.clean_products_data(cleaned_products_df)
 
+# Step 4:
+db_uploader.init_db_engine()
+
+if cleaned_products_df is not None: 
+    db_uploader.upload_to_db(cleaned_products_df, 'dim_products')
+else:
+    print("Error: Cleaned_products_df is None. Upload to the database skipped.")    
