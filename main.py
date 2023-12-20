@@ -25,16 +25,18 @@ data_extractor = DataExtractor()
 # # Step 6
 # db_connector.disconnect()
 
-# Step 7: Extract card data from PDF
+# Task 4: Extracting users and cleaning card details
+
+# Step 1,2: Extract card data from PDF
 # pdf_link_card=r"C:\Users\Sinhye\Documents\GitHub\multinational-retail-data-centralisation239\card_details.pdf"
 # card_data_extractor= DataExtractor()
 # card_data= card_data_extractor.retrieve_pdf_data(pdf_link_card)
 
-# Step 8: Clean the card data
+# Step 3: Clean the card data
 # card_data_cleaning= DataCleaning()
 # cleaned_card_data= card_data_cleaning.clean_card_data(card_data)
 
-# Step 9: Upload cleaned card data to the database
+# Step 4: Upload cleaned card data to the database
 # db_uploader=DatabaseUploader()
 # db_uploader.upload_card_data(cleaned_card_data, 'dim_card_details')
 
@@ -63,5 +65,5 @@ data_extractor = DataExtractor()
 
 # Task 6: Extract and clean the product details
 
-# Step 1  
+# Step 1 : 
 prodcuts_df= data_extractor.extract_s3("s3://data-handling-public/products.csv")
