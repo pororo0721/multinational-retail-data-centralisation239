@@ -15,8 +15,11 @@ class DatabaseConnector:
             db_creds = self.read_db_creds()
             db_url = f"postgresql://{db_creds['RDS_USER']}:{db_creds['RDS_PASSWORD']}@{db_creds['RDS_HOST']}:{db_creds['RDS_PORT']}/{db_creds['RDS_DATABASE']}"
             print(f"Database URL: {db_url}")
+
+            # Create a new engine with autocommit set to True
             engine = create_engine(db_url, isolation_level="AUTOCOMMIT", pool_pre_ping=True)
             self.conn = engine.connect()
+
             print("Database connection established successfully.")
         except Exception as e:
             print(f"Error establishing database connection: {e}")    
