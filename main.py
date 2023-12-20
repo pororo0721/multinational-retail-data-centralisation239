@@ -67,4 +67,4 @@ data_extractor = DataExtractor()
 # Task 6: Extract and clean the product details
 
 # Step 1 : 
-prodcuts_df= data_extractor.extract_s3("s3://data-handling-public/products.csv")
+products_df = data_extractor.extract_s3('s3://data-handling-public/products.csv')

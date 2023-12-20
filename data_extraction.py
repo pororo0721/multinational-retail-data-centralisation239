@@ -76,7 +76,17 @@ class DataExtractor:
 
         # Method to extract data from an S3 bucket
         try:
-            bucket_name, object_key = s3_address.split('//')[2].split('/', 1)
+            parts= s3_address.split('//')[2].split('/', 1)
+
+            print("S3 Address:", s3_address)
+            print("Parts:", parts)
+
+            if len(parts) !=2:
+                raise ValueError("Invalid S3 address format. Expected 's3://<bucket_name>/<object_key>'.")
+            
+            bucket_name,object_key=parts
+            
+            # Extract data from S3 bucket
             s3_client= boto3.client('s3')
             response = s3_client.get_object(Bucket= bucket_name, key= object_key)
             data= response['Body'].read().decode('utf-8')
