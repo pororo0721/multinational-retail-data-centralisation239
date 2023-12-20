@@ -1,6 +1,7 @@
 import pandas as pd
 import tabula
 import requests
+import boto3
 
 class DataExtractor:
     
@@ -70,6 +71,17 @@ class DataExtractor:
         pass
 
     @staticmethod
-    def extract_s3(bucket_name, object_key):
+    def extract_s3(self, s3_address):
         # Method to extract data from an S3 bucket
-        pass
+        try:
+            s3_client= boto3.client('s3')
+            response = s3_client.get_object(Bucket= s3_address.split('//')[2], key= s3_address.split('//')[3])
+            data= response['Body'].read().decode('utf-8')
+
+            # Create pandas DataFrame
+            df=pd.read_csv(StringIO(data))
+            return df
+
+        except Exception as e:
+            print(f"Error extracting data from s3: {e}")
+            return None    

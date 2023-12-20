@@ -38,23 +38,27 @@ data_extractor = DataExtractor()
 # db_uploader=DatabaseUploader()
 # db_uploader.upload_card_data(cleaned_card_data, 'dim_card_details')
 
-# Step 10: Retrieve the number of stores from the API
-number_stores_endpoint=" https://aqj7u5id95.execute-api.eu-west-1.amazonaws.com/prod/number_stores"
-headers={'x-api-key' : 'yFBQbwXe9J3sd6zWVAMrK6lcxxr0q1lr2PT6DDMX'}
-list_number_of_stores= data_extractor.list_number_of_stores(number_stores_endpoint,headers)
+# Task 5: 
+# Step 1,2: Retrieve the number of stores from the API
+# number_stores_endpoint=" https://aqj7u5id95.execute-api.eu-west-1.amazonaws.com/prod/number_stores"
+# headers={'x-api-key' : 'yFBQbwXe9J3sd6zWVAMrK6lcxxr0q1lr2PT6DDMX'}
+# list_number_of_stores= data_extractor.list_number_of_stores(number_stores_endpoint,headers)
 
-# Step 11: Retrieve store data from the API
-store_endpoint="https://aqj7u5id95.execute-api.eu-west-1.amazonaws.com/prod/store_details/{store_number}"
-store_data= data_extractor.retrieve_stores_data(store_endpoint, headers)
+# Step 3: Retrieve store data from the API
+# store_endpoint="https://aqj7u5id95.execute-api.eu-west-1.amazonaws.com/prod/store_details/{store_number}"
+# store_data= data_extractor.retrieve_stores_data(store_endpoint, headers)
 
-# Step 12: Clean the store data
-store_data_cleaning = DataCleaning()
-cleaned_store_data = store_data_cleaning.called_clean_store_data(store_data)
+# Step 4: Clean the store data
+# store_data_cleaning = DataCleaning()
+# cleaned_store_data = store_data_cleaning.called_clean_store_data(store_data)
 
-# Step 13: Upload cleaned store data to the database
-db_uploader=DatabaseUploader()
+# Step 5: Upload cleaned store data to the database
+# db_uploader=DatabaseUploader()
 
-if cleaned_store_data is not None:
-    db_uploader.upload_to_db(cleaned_store_data, 'dim_store_details')
-else:
-    print("Error: cleaned_store_data is None. Upload to the database skipped.")    
+# if cleaned_store_data is not None:
+#     db_uploader.upload_to_db(cleaned_store_data, 'dim_store_details')
+# else:
+#     print("Error: cleaned_store_data is None. Upload to the database skipped.")  
+#
+
+  
