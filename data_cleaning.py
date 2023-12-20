@@ -42,10 +42,17 @@ class DataCleaning:
             print(f"Error converting product weights: {e}")
             return None 
 
-    def convert_to_kg(self, weight):
-        # Implement your logic to convert different units to kg
-        # Example: 1 g = 0.001 kg, 1 ml = 0.001 kg
-        return float(weight) * 0.001 if 'g' in str(weight) else float(weight)
+    @staticmethod
+    def convert_to_kg(weight):
+        # Extract nuberic part of the weight and convert to float
+        try:
+            numeric_part = float(''.join(filter(str.isdigit, str(weight))))
+            # Assuming 'g' is the default unit, convert to kg
+            return numeric_part * 0.001
+        except Exception as e:
+            print(f"Error converting weight to kg: {e}")
+            return None    
+        
 
     @staticmethod
     def clean_csv(data):
