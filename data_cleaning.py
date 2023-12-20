@@ -2,8 +2,8 @@ import pandas as pd
 
 class DataCleaning:
     
-    
-    def clean_card_data(self, df):
+    @staticmethod
+    def clean_card_data(df):
         # Implement your data cleaning logic for card data here
         # Remove erroneous values, NULL values, or errors with formatting
 
@@ -12,8 +12,8 @@ class DataCleaning:
 
         return cleaned_df 
 
-    
-    def called_clean_store_data(self, store_data):  
+    @staticmethod
+    def called_clean_store_data(store_data):  
         # This could include handling missing values, remobing duplicates, etc.
         try:
             if store_data is not None:
@@ -31,7 +31,7 @@ class DataCleaning:
     def convert_product_weights(products_df):              
         try:
             # Assuming 'weight' column contains weights in different units
-            # Implement your logic to convert weight to kg
+            # Implement logic to convert weight to kg
             # Use a 1:1 ration of ml to g as a rough estimate for ml rows
 
             # Example: Convert 'weight' column to float
@@ -59,9 +59,23 @@ class DataCleaning:
 
             # Assuming 'g' is the default unit, convert to kg
             return float(numeric_part) * 0.001
+
         except Exception as e:
             print(f"Error converting weight to kg: {e}")
-            return None    
+            return None  
+
+    @staticmethod
+    def clean_products_data(products_df):
+        try:
+            # Implement logic to clean the DataFrame of any additional erroneous values
+            # Example: Drop rows with missing values
+            cleaned_df = products_df.dropna()
+
+            return cleaned_df
+
+        except Exception as e:
+            print(f"Error cleaning products data: {e}")
+            return None
         
 
     @staticmethod

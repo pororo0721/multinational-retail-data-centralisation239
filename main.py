@@ -71,3 +71,7 @@ products_df = data_extractor.extract_s3('s3://data-handling-public/products.csv'
 
 # Step 2:
 cleaned_products_df = data_cleaning.convert_product_weights(products_df)
+
+# Step 3:
+cleaned_products_df= data_cleaning.clean_products_data(cleaned_products_df)
+
