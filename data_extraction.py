@@ -76,7 +76,7 @@ class DataExtractor:
 
         # Method to extract data from an S3 bucket
         try:
-            parts= s3_address.split('//')[2].split('/', 1)
+            parts= s3_address.replace('s3://', '')[2].split('/', 1)
 
             print("S3 Address:", s3_address)
             print("Parts:", parts)
