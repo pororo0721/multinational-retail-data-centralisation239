@@ -46,15 +46,19 @@ class DataCleaning:
     def convert_to_kg(weight):
         
         try:
-            # If weight is an empty string or non-numeric, return None
-            if not weight or not weight.replace('.','').isdigit():
+            # If weight is not a string, return None
+            if not isinstance(weight, str):
                 return None
 
-            # Extract nuberic part of the weight and convert to float
-            numeric_part = float(''.join(filter(str.isdigit, str(weight))))
-            
+            # Remove non-numeric characters from the weight
+            numeric_part= ''.join(filter(str.isdigit, weight)) 
+
+            #  If the resulting string is empty, return None
+            if not numeric_part:
+                return None
+
             # Assuming 'g' is the default unit, convert to kg
-            return numeric_part * 0.001
+            return float(numeric_part) * 0.001
         except Exception as e:
             print(f"Error converting weight to kg: {e}")
             return None    
