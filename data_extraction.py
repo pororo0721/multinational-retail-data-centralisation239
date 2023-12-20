@@ -3,6 +3,7 @@ import tabula
 import requests
 import boto3
 from io import StringIO
+from urllib.parse import urlsplit
 
 class DataExtractor:
     
@@ -74,18 +75,19 @@ class DataExtractor:
     @staticmethod
     def extract_s3(s3_address):
 
-        # Method to extract data from an S3 bucket
+        
         try:
-            parts= s3_address.replace('s3://', '')[2].split('/', 1)
+            # Extract buckey_name and object_key from the S3 address
+            url_parts = urlsplit(s3_address)
+            if url_parts.scheme != 's3':
+                raise ValueError("Invalid S3 address scheme. Expected 's3://'.")
 
-            print("S3 Address:", s3_address)
-            print("Parts:", parts)
+            bucket_name= url_parts.netloc
+            object_key= url_parts.path.lstrip('/')
 
-            if len(parts) !=2:
+            if not bucket_name or not object_key:
                 raise ValueError("Invalid S3 address format. Expected 's3://<bucket_name>/<object_key>'.")
-            
-            bucket_name,object_key=parts
-            
+      
             # Extract data from S3 bucket
             s3_client= boto3.client('s3')
             response = s3_client.get_object(Bucket= bucket_name, key= object_key)
