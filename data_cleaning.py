@@ -44,9 +44,15 @@ class DataCleaning:
 
     @staticmethod
     def convert_to_kg(weight):
-        # Extract nuberic part of the weight and convert to float
+        
         try:
+            # If weight is an empty string or non-numeric, return None
+            if not weight or not weight.replace('.','').isdigit():
+                return None
+
+            # Extract nuberic part of the weight and convert to float
             numeric_part = float(''.join(filter(str.isdigit, str(weight))))
+            
             # Assuming 'g' is the default unit, convert to kg
             return numeric_part * 0.001
         except Exception as e:
