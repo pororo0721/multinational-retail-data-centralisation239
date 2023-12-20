@@ -61,4 +61,7 @@ data_extractor = DataExtractor()
 #     print("Error: cleaned_store_data is None. Upload to the database skipped.")  
 #
 
-  
+# Task 6: Extract and clean the product details
+
+# Step 1  
+prodcuts_df= data_extractor.extract_s3("s3://data-handling-public/products.csv")

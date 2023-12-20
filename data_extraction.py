@@ -72,12 +72,13 @@ class DataExtractor:
         pass
 
     @staticmethod
-    def extract_s3(self, s3_address):
+    def extract_s3(s3_address):
 
         # Method to extract data from an S3 bucket
         try:
+            bucket_name, object_key = s3_address.split('//')[2].split('/', 1)
             s3_client= boto3.client('s3')
-            response = s3_client.get_object(Bucket= s3_address.split('//')[2], key= s3_address.split('//')[3])
+            response = s3_client.get_object(Bucket= bucket_name, key= object_key)
             data= response['Body'].read().decode('utf-8')
 
             # Create pandas DataFrame
