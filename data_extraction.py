@@ -2,6 +2,7 @@ import pandas as pd
 import tabula
 import requests
 import boto3
+from io import StringIO
 
 class DataExtractor:
     
@@ -72,6 +73,7 @@ class DataExtractor:
 
     @staticmethod
     def extract_s3(self, s3_address):
+
         # Method to extract data from an S3 bucket
         try:
             s3_client= boto3.client('s3')
