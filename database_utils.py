@@ -13,7 +13,7 @@ class DatabaseConnector:
     def init_db_engine(self):
         try:
             db_creds = self.read_db_creds()
-            db_url = f"postgresql://{db_creds['RDS_USER']}:{db_creds['RDS_PASSWORD']}@{db_creds['RDS_HOST']}:{db_creds['RDS_PORT']}/{db_creds['RDS_DATABASE']}"
+            db_url = f"postgresql://{db_creds['RDS_USER']}:{db_creds['RDS_PASSWORD']}@{db_creds['RDS_HOST']}:{db_creds['RDS_PORT']}/{db_creds['RDS_DATABASE']}?sslmode=require"
             print(f"Database URL: {db_url}")
 
             # Create a new engine with autocommit set to True

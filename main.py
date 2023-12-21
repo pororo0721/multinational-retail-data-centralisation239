@@ -90,4 +90,7 @@ tables = db_connector.list_db_tables()
 print("Available tables:", tables)
 
 # Step 2: Extract orders data
-orders_data= data_extractor.read_rds_table(db_connector, table_name='orders_table')
+orderes_data= data_extractor.read_rds_table(db_connector, table_name='orders_table')
+
+# Step 3: Clean orders data
+cleaned_orders_data= data_cleaning.clean_orders_data(orderes_data)
