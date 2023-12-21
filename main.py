@@ -94,3 +94,12 @@ orderes_data= data_extractor.read_rds_table(db_connector, table_name='orders_tab
 
 # Step 3: Clean orders data
 cleaned_orders_data= data_cleaning.clean_orders_data(orderes_data)
+
+# Step 4: Upload cleaned data to the database
+db_uploader.init_db_engine()
+
+if cleaned_orders_data is not None:
+    db_uploader.upload_to_db(cleaned_orders_data, 'orders_table')
+    print("Orders data uploaded successfully.")
+else:
+    print("Errpr: Cleaned_orders_data is None. Upload to the database skipped.")    
