@@ -13,7 +13,7 @@ class DatabaseConnector:
     def init_db_engine(self):
         try:
             db_creds = self.read_db_creds()
-            db_url = f"postgresql://{db_creds['RDS_USER']}:{db_creds['RDS_PASSWORD']}@{db_creds['RDS_HOST']}:{db_creds['RDS_PORT']}/{db_creds['RDS_DATABASE']}?sslmode=require"
+            db_url = f"postgresql://{db_creds['RDS_USER']}:{db_creds['RDS_PASSWORD']}@{db_creds['RDS_HOST']}:{db_creds['RDS_PORT']}/{db_creds['RDS_DATABASE']}"
             print(f"Database URL: {db_url}")
 
             # Create a new engine with autocommit set to True
@@ -35,7 +35,7 @@ class DatabaseConnector:
         return tables
 
     def upload_to_db(self, data, table_name):
-        data.to_sql(table_name, self.conn, if_exists='replace', index=False)
+        data.to_sql(table_name, self.conn, if_exists='append', index=False)
 
     def disconnect(self):
         if self.conn:
