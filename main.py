@@ -67,18 +67,24 @@ db_uploader=DatabaseUploader()
 # Task 6: Extract and clean the product details
 
 # Step 1 : 
-products_df = data_extractor.extract_s3('s3://data-handling-public/products.csv')
+# products_df = data_extractor.extract_s3('s3://data-handling-public/products.csv')
 
 # Step 2:
-cleaned_products_df = data_cleaning.convert_product_weights(products_df)
+# cleaned_products_df = data_cleaning.convert_product_weights(products_df)
 
 # Step 3:
-cleaned_products_df= data_cleaning.clean_products_data(cleaned_products_df)
+# cleaned_products_df= data_cleaning.clean_products_data(cleaned_products_df)
 
 # Step 4:
-db_uploader.init_db_engine()
+# db_uploader.init_db_engine()
 
-if cleaned_products_df is not None: 
-    db_uploader.upload_to_db(cleaned_products_df, 'dim_products')
-else:
-    print("Error: Cleaned_products_df is None. Upload to the database skipped.")    
+# if cleaned_products_df is not None: 
+#     db_uploader.upload_to_db(cleaned_products_df, 'dim_products')
+# else:
+#     print("Error: Cleaned_products_df is None. Upload to the database skipped.")    
+
+# Task 7: Retrieve and clean the orders table
+
+# Step1: List all tables in the database
+tables = db_connector.list_db_tables()
+print("Available tables:", tables)
