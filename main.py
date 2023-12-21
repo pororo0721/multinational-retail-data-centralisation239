@@ -88,3 +88,6 @@ db_uploader=DatabaseUploader()
 # Step1: List all tables in the database
 tables = db_connector.list_db_tables()
 print("Available tables:", tables)
+
+# Step 2: Extract orders data
+orders_data= data_extractor.read_rds_table(db_connector, table_name='orders_table')

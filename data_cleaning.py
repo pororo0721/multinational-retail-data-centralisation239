@@ -76,8 +76,20 @@ class DataCleaning:
         except Exception as e:
             print(f"Error cleaning products data: {e}")
             return None
-        
 
+    @staticmethod
+    def clean_orders_data(df):
+        # Method to clean orders data
+        try:
+            #Remove unwated columns
+            columns_to_remove =['first_name','last_name','1']
+            cleaned_orders_data= df.drop(columns=columns_to_remove, errors='ignore')
+            return cleaned_orders_data
+
+        except Exception as e:
+            print(f"Error cleaning orders data: {e}")
+            return None      
+        
     @staticmethod
     def clean_csv(data):
         # Method to clean data extracted from CSV   
@@ -97,3 +109,4 @@ class DataCleaning:
     def clean_user_data(data):
         # Implement your data cleaning logic here
         return data
+

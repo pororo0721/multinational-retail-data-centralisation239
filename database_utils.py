@@ -17,7 +17,12 @@ class DatabaseConnector:
             print(f"Database URL: {db_url}")
 
             # Create a new engine with autocommit set to True
-            engine = create_engine(db_url, isolation_level="AUTOCOMMIT", pool_pre_ping=True)
+            engine = create_engine(
+                db_url,
+                isolation_level="AUTOCOMMIT",
+                pool_pre_ping=True,
+                connect_args={'sslmode': 'require'}
+            )            
             self.conn = engine.connect()
 
             print("Database connection established successfully.")
