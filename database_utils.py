@@ -35,7 +35,11 @@ class DatabaseConnector:
         return tables
 
     def upload_to_db(self, data, table_name):
-        data.to_sql(table_name, self.conn, if_exists='append', index=False)
+        if self.conn is not None:
+            data.to_sql(table_name, self.conn, if_exists='append', index=False)
+        else:
+            print("Database connection is None. Data upload skipped.")    
+        
 
     def disconnect(self):
         if self.conn:

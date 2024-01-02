@@ -112,3 +112,11 @@ json_data = data_extractor.extract_json('s3://data-handling-public/date_details.
 # Step 2: Clean the JSON data
 print(json_data)
 cleaned_json_data = data_cleaning.clean_json_data(json_data)
+
+# Step 3: Upload cleaned data to the database
+
+if cleaned_json_data is not None:
+    db_uploader.upload_to_db(cleaned_json_data, 'dim_data_times')
+    print("JSON data uploaded successfully.")
+else:
+    print("Error: Cleaned_json_data is None. Upload to the database skipped. ")    
