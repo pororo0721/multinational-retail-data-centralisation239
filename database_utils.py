@@ -1,5 +1,8 @@
 import yaml
 from sqlalchemy import create_engine, inspect
+from sqlalchemy import text
+import time
+
 
 class DatabaseConnector:
     def __init__(self):
@@ -48,7 +51,22 @@ class DatabaseConnector:
             db_creds = yaml.safe_load(file)
         return db_creds 
 
-               
+    def change_data_types(self, table_name, column_types):
+        try:
+            if not self.conn or self.conn.closed:
+                print("Database connection is not established.")
+                return   
+
+            for column, new_type in column_types.items():
+                # Generate SQL query to alter column data type
+                query = text(f"ALTER TABLE {table_name} ALTER COLUMN {column} TYPE {new_type};")
+
+                # Execute the query
+                self.conn.execute(query)
+
+            print(f"Data types for columns in {table_name} updated successfully.")
+        except Exception as e:
+            print(f"Error changing data types: {e}")     
 
 # inherit from DatabaseConnector
 class DatabaseUploader(DatabaseConnector):

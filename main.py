@@ -8,6 +8,7 @@ data_extractor = DataExtractor()
 data_cleaning = DataCleaning()
 db_uploader=DatabaseUploader()
 
+# Milstone 2: Extract and clean the data from the data sources
 
 # Task 3: Extract amd clean the user data
 # Step 1
@@ -127,5 +128,17 @@ db_connector.init_db_engine()
 # else:
 #     print("Error: Cleaned_json_data is None. Upload to the database skipped. ")    
 
+# Milestone 3: Create the database schema
 
-db_connector.change_data_types("orders_table", {"date_uuid": "UUID", "user_uuid": "UUID", "card_number": "VARCHAR(?)", "store_code": "VARCHAR(?)", "product_code": "VARCHAR(?)", "product_quantity": "SMALLINT"})
+# Task 1: Cast the columns of the orders_table to the correct data types.
+
+data_types_changes = {
+    "date_uuid": "UUID",
+    "user_uuid": "UUID",
+    "card_number": "VARCHAR(255)",  # Replace 255 with the actual maximum length
+    "store_code": "VARCHAR(255)",  # Replace 255 with the actual maximum length
+    "product_code": "VARCHAR(255)", # Replace 255 with the actual maximum length
+    "product_quantity": "SMALLINT"
+}
+
+db_connector.change_data_types("orders_table", data_types_changes)
