@@ -107,4 +107,4 @@ db_uploader=DatabaseUploader()
 # Task 8: Retrieve and clean the data events data.
 
 #  Step 1: Extract JSON data
-json_data = data_extractor.extract_json('s3://data-handling-public/date_details.json')
+json_data = data_extractor.extract_json('s3://data-handling-public.s3.eu-west-1.amazonaws.com/date_details.json')

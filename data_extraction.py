@@ -86,14 +86,16 @@ class DataExtractor:
 
             if not bucket_name or not object_key:
                 raise ValueError("Invalid S3 address format. Expected 's3://<bucket_name>/<object_key>'.")
-      
+            
+            print(f"Bucket: {bucket_name}, Key: {object_key}")
+
             # Extract data from S3 bucket
             s3_client= boto3.client('s3')
             response = s3_client.get_object(Bucket= bucket_name, Key= object_key)
             data= response['Body'].read().decode('utf-8')
 
             # Create pandas DataFrame
-            df=pd.read_csv(StringIO(data))
+            df=pd.read_json(StringIO(data))
             return df
 
         except Exception as e:
@@ -110,11 +112,11 @@ class DataExtractor:
             object_key = url_parts.path.lstrip('/')
 
             s3_client = boto3.client('s3')
-            response= s3_client.get_object(Bucket=bucket_name, key=object_key)
+            response= s3_client.get_object(Bucket=bucket_name, Key=object_key)
             data = response['Body'].read().decode('utf-8')
             json_data =pd.read_json(StringIO(data))
             return json_data
-               
+
         except Exception as e:
             print(f"Error extracting JSON data from s3: {e}")
             return None         
