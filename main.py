@@ -86,20 +86,25 @@ db_uploader=DatabaseUploader()
 # Task 7: Retrieve and clean the orders table
 
 # Step1: List all tables in the database
-tables = db_connector.list_db_tables()
-print("Available tables:", tables)
+# tables = db_connector.list_db_tables()
+# print("Available tables:", tables)
 
 # Step 2: Extract orders data
-orderes_data= data_extractor.read_rds_table(db_connector, table_name='orders_table')
+# orderes_data= data_extractor.read_rds_table(db_connector, table_name='orders_table')
 
 # Step 3: Clean orders data
-cleaned_orders_data= data_cleaning.clean_orders_data(orderes_data)
+# cleaned_orders_data= data_cleaning.clean_orders_data(orderes_data)
 
 # Step 4: Upload cleaned data to the database
-db_uploader.init_db_engine()
+# db_uploader.init_db_engine()
 
-if cleaned_orders_data is not None:
-    db_uploader.upload_to_db(cleaned_orders_data, 'orders_table')
-    print("Orders data uploaded successfully.")
-else:
-    print("Errpr: Cleaned_orders_data is None. Upload to the database skipped.")    
+# if cleaned_orders_data is not None:
+#     db_uploader.upload_to_db(cleaned_orders_data, 'orders_table')
+#     print("Orders data uploaded successfully.")
+# else:
+#     print("Errpr: Cleaned_orders_data is None. Upload to the database skipped.")    
+
+# Task 8: Retrieve and clean the data events data.
+
+#  Step 1: Extract JSON data
+json_data = data_extractor.extract_json('s3://data-handling-public/date_details.json')

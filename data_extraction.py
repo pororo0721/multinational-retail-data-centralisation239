@@ -74,8 +74,7 @@ class DataExtractor:
 
     @staticmethod
     def extract_s3(s3_address):
-
-        
+  
         try:
             # Extract buckey_name and object_key from the S3 address
             url_parts = urlsplit(s3_address)
@@ -99,4 +98,23 @@ class DataExtractor:
 
         except Exception as e:
             print(f"Error extracting data from s3: {e}")
-            return None    
+            return None   
+
+    @staticmethod
+    def extract_json(s3_address):
+        try:
+            url_parts= urlsplit(s3_address)
+            if url_parts.scheme != 's3':
+                raise ValueError("Invalid S3 address scheme. Expected 's3://'.")
+            bucket_name = url_parts.netloc
+            object_key = url_parts.path.lstrip('/')
+
+            s3_client = boto3.client('s3')
+            response= s3_client.get_object(Bucket=bucket_name, key=object_key)
+            data = response['Body'].read().decode('utf-8')
+            json_data =pd.read_json(StringIO(data))
+            return json_data
+               
+        except Exception as e:
+            print(f"Error extracting JSON data from s3: {e}")
+            return None         
