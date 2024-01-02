@@ -3,13 +3,14 @@ from database_utils import DatabaseConnector, DatabaseUploader
 from data_extraction import DataExtractor
 from data_cleaning import DataCleaning
 
+# Task 3: Extract amd clean the user data
 # Step 1
 db_connector = DatabaseConnector()
 db_connector.init_db_engine()
 
 # Step 2
-# tables = db_connector.list_db_tables()
-# print("Available tables:", tables)
+tables = db_connector.list_db_tables()
+print("Available tables:", tables)
 
 # Step 3
 data_extractor = DataExtractor()
