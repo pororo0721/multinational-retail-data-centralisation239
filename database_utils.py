@@ -5,11 +5,6 @@ class DatabaseConnector:
     def __init__(self):
         self.conn = None 
 
-    def read_db_creds(self, file_path="db_creds.yaml"):
-        with open(file_path, 'r') as file:
-            db_creds = yaml.safe_load(file)
-        return db_creds
-
     def init_db_engine(self):
         try:
             db_creds = self.read_db_creds()
@@ -47,6 +42,13 @@ class DatabaseConnector:
             print("Disconnected from the database.")
             # Reconnect after disconnection
             self.init_db_engine()
+
+    def read_db_creds(self, file_path="db_creds.yaml"):
+        with open(file_path, 'r') as file:
+            db_creds = yaml.safe_load(file)
+        return db_creds 
+
+               
 
 # inherit from DatabaseConnector
 class DatabaseUploader(DatabaseConnector):

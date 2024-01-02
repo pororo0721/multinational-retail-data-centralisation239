@@ -3,22 +3,28 @@ from database_utils import DatabaseConnector, DatabaseUploader
 from data_extraction import DataExtractor
 from data_cleaning import DataCleaning
 
+db_connector = DatabaseConnector()
+data_extractor = DataExtractor()
+data_cleaning = DataCleaning()
+db_uploader=DatabaseUploader()
+
+
 # Task 3: Extract amd clean the user data
 # Step 1
-db_connector = DatabaseConnector()
 db_connector.init_db_engine()
 
 # Step 2
-tables = db_connector.list_db_tables()
-print("Available tables:", tables)
+# tables = db_connector.list_db_tables()
+# print("Available tables:", tables)
+# table_name ="orders_table"
+# raw_data = data_extractor.read_rds_table(db_connector, table_name)
+# print(raw_data)
 
 # Step 3
-data_extractor = DataExtractor()
 # user_data = data_extractor.read_rds_table(db_connector)
 
 # # Step 4
-data_cleaning = DataCleaning()
-# cleaned_user_data= data_cleaning.cleaned_user_data(user_data)
+# cleaned_user_data= data_cleaning.clean_user_data(user_data)
 
 # # Step 5
 # db_connector.upload_to_db(cleaned_user_data, 'dim_users')
@@ -38,7 +44,6 @@ data_cleaning = DataCleaning()
 # cleaned_card_data= card_data_cleaning.clean_card_data(card_data)
 
 # Step 4: Upload cleaned card data to the database
-db_uploader=DatabaseUploader()
 # db_uploader.upload_card_data(cleaned_card_data, 'dim_card_details')
 
 # Task 5: Extract and clean the details of each store
@@ -108,16 +113,19 @@ db_uploader=DatabaseUploader()
 # Task 8: Retrieve and clean the data events data.
 
 #  Step 1: Extract JSON data
-json_data = data_extractor.extract_json('s3://data-handling-public/date_details.json')
+# json_data = data_extractor.extract_json('s3://data-handling-public/date_details.json')
 
 # Step 2: Clean the JSON data
-print(json_data)
-cleaned_json_data = data_cleaning.clean_json_data(json_data)
+# print(json_data)
+# cleaned_json_data = data_cleaning.clean_json_data(json_data)
 
 # Step 3: Upload cleaned data to the database
 
-if cleaned_json_data is not None:
-    db_uploader.upload_to_db(cleaned_json_data, 'dim_data_times')
-    print("JSON data uploaded successfully.")
-else:
-    print("Error: Cleaned_json_data is None. Upload to the database skipped. ")    
+# if cleaned_json_data is not None:
+#     db_uploader.upload_to_db(cleaned_json_data, 'dim_data_times')
+#     print("JSON data uploaded successfully.")
+# else:
+#     print("Error: Cleaned_json_data is None. Upload to the database skipped. ")    
+
+
+db_connector.change_data_types("orders_table", {"date_uuid": "UUID", "user_uuid": "UUID", "card_number": "VARCHAR(?)", "store_code": "VARCHAR(?)", "product_code": "VARCHAR(?)", "product_quantity": "SMALLINT"})
