@@ -108,3 +108,7 @@ db_uploader=DatabaseUploader()
 
 #  Step 1: Extract JSON data
 json_data = data_extractor.extract_json('s3://data-handling-public/date_details.json')
+
+# Step 2: Clean the JSON data
+print(json_data)
+cleaned_json_data = data_cleaning.clean_json_data(json_data)

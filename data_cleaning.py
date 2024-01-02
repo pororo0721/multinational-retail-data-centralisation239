@@ -88,7 +88,12 @@ class DataCleaning:
 
         except Exception as e:
             print(f"Error cleaning orders data: {e}")
-            return None      
+            return None 
+
+    @staticmethod
+    def clean_json_data(json_df):
+        cleaned_df = json_df.dropna()
+        return cleaned_df             
         
     @staticmethod
     def clean_csv(data):

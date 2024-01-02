@@ -111,9 +111,12 @@ class DataExtractor:
             bucket_name = url_parts.netloc
             object_key = url_parts.path.lstrip('/')
 
+            # Extract data from S3 bucket
             s3_client = boto3.client('s3')
             response= s3_client.get_object(Bucket=bucket_name, Key=object_key)
             data = response['Body'].read().decode('utf-8')
+            
+            # Create pandas DataFrame
             json_data =pd.read_json(StringIO(data))
             return json_data
 
