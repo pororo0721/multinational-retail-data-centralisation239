@@ -3,6 +3,7 @@ from database_utils import DatabaseConnector, DatabaseUploader
 from data_extraction import DataExtractor
 from data_cleaning import DataCleaning
 
+
 db_connector = DatabaseConnector()
 data_extractor = DataExtractor()
 data_cleaning = DataCleaning()
@@ -132,6 +133,7 @@ print("Available tables:", tables)
 
 # Task 1: Cast the columns of the orders_table to the correct data types.
 
+# Define the columns and their desired data types
 # data_types_changes = {
 #     "date_uuid": "UUID",
 #     "user_uuid": "UUID",
@@ -141,7 +143,23 @@ print("Available tables:", tables)
 #     "product_quantity": "SMALLINT"
 # }
 
+# Change the data types of columns in orders_talbe
 # db_connector.change_data_types("orders_table", data_types_changes)
 
 # Task 2: Cast the columns of the dim_users_table to the correct data types.
 
+# Define the columns and their desired data types
+column_data_types ={
+    "first_name" : "VARCHAR(255)",
+    "last_name" : "VARCHAR(255)",
+    "date_of_birth" : "DATE",
+    "country_code" :"VARCHAR(255)",
+    "user_uuid" : "UUID",
+    "join_date" : "DATE"
+}
+
+# Change the data types of columns in dim_users_table
+db_connector.change_data_types("dim_users_table", column_data_types)
+
+# Disconnect from the database
+db_connector.disconnect()
