@@ -15,8 +15,8 @@ db_uploader=DatabaseUploader()
 db_connector.init_db_engine()
 
 # Step 2
-# tables = db_connector.list_db_tables()
-# print("Available tables:", tables)
+tables = db_connector.list_db_tables()
+print("Available tables:", tables)
 # table_name ="orders_table"
 # raw_data = data_extractor.read_rds_table(db_connector, table_name)
 # print(raw_data)
@@ -132,13 +132,16 @@ db_connector.init_db_engine()
 
 # Task 1: Cast the columns of the orders_table to the correct data types.
 
-data_types_changes = {
-    "date_uuid": "UUID",
-    "user_uuid": "UUID",
-    "card_number": "VARCHAR(255)",  # Replace 255 with the actual maximum length
-    "store_code": "VARCHAR(255)",  # Replace 255 with the actual maximum length
-    "product_code": "VARCHAR(255)", # Replace 255 with the actual maximum length
-    "product_quantity": "SMALLINT"
-}
+# data_types_changes = {
+#     "date_uuid": "UUID",
+#     "user_uuid": "UUID",
+#     "card_number": "VARCHAR(255)",  # Replace 255 with the actual maximum length
+#     "store_code": "VARCHAR(255)",  # Replace 255 with the actual maximum length
+#     "product_code": "VARCHAR(255)", # Replace 255 with the actual maximum length
+#     "product_quantity": "SMALLINT"
+# }
 
-db_connector.change_data_types("orders_table", data_types_changes)
+# db_connector.change_data_types("orders_table", data_types_changes)
+
+# Task 2: Cast the columns of the dim_users_table to the correct data types.
+

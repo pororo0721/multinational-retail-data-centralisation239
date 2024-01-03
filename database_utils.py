@@ -1,7 +1,7 @@
 import yaml
 from sqlalchemy import create_engine, inspect
 from sqlalchemy import text
-import time
+
 
 
 class DatabaseConnector:
@@ -37,19 +37,6 @@ class DatabaseConnector:
             data.to_sql(table_name, self.conn, if_exists='append', index=False)
         else:
             print("Database connection is None. Data upload skipped.")    
-        
-
-    def disconnect(self):
-        if self.conn:
-            self.conn.close()
-            print("Disconnected from the database.")
-            # Reconnect after disconnection
-            self.init_db_engine()
-
-    def read_db_creds(self, file_path="db_creds.yaml"):
-        with open(file_path, 'r') as file:
-            db_creds = yaml.safe_load(file)
-        return db_creds 
 
     def change_data_types(self, table_name, column_types):
         try:
@@ -66,7 +53,19 @@ class DatabaseConnector:
 
             print(f"Data types for columns in {table_name} updated successfully.")
         except Exception as e:
-            print(f"Error changing data types: {e}")     
+            print(f"Error changing data types: {e}") 
+
+    def disconnect(self):
+        if self.conn:
+            self.conn.close()
+            print("Disconnected from the database.")
+            # Reconnect after disconnection
+            self.init_db_engine()
+
+    def read_db_creds(self, file_path="db_creds.yaml"):
+        with open(file_path, 'r') as file:
+            db_creds = yaml.safe_load(file)
+        return db_creds             
 
 # inherit from DatabaseConnector
 class DatabaseUploader(DatabaseConnector):
