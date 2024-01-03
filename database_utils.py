@@ -54,7 +54,7 @@ class DatabaseConnector:
             print(f"Data types for columns in {table_name} updated successfully.")
         except Exception as e:
             print(f"Error changing data types: {e}") 
-
+     
     def disconnect(self):
         if self.conn:
             self.conn.close()

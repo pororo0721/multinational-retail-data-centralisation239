@@ -1,4 +1,3 @@
-# Example Usage
 from database_utils import DatabaseConnector, DatabaseUploader
 from data_extraction import DataExtractor
 from data_cleaning import DataCleaning
@@ -149,17 +148,17 @@ print("Available tables:", tables)
 # Task 2: Cast the columns of the dim_users_table to the correct data types.
 
 # Define the columns and their desired data types
-column_data_types ={
-    "first_name" : "VARCHAR(255)",
-    "last_name" : "VARCHAR(255)",
-    "date_of_birth" : "DATE",
-    "country_code" :"VARCHAR(255)",
-    "user_uuid" : "UUID",
-    "join_date" : "DATE"
-}
+# column_data_types ={
+#     "first_name" : "VARCHAR(255)",
+#     "last_name" : "VARCHAR(255)",
+#     "date_of_birth" : "DATE",
+#     "country_code" :"VARCHAR(255)",
+#     "user_uuid" : "UUID",
+#     "join_date" : "DATE"
+# }
 
 # Change the data types of columns in dim_users_table
-db_connector.change_data_types("dim_users_table", column_data_types)
+# db_connector.change_data_types("dim_users_table", column_data_types)
 
 # Disconnect from the database
-db_connector.disconnect()
+# db_connector.disconnect()
