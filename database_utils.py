@@ -54,7 +54,38 @@ class DatabaseConnector:
             print(f"Data types for columns in {table_name} updated successfully.")
         except Exception as e:
             print(f"Error changing data types: {e}") 
-     
+
+    def update_store_details_table(self):
+        try:
+            if not self.conn or self.conn.closed:
+                print("Database connection is not established.")
+                return
+
+            #SQL statements for updating store_details_table 
+            sql_statements=[
+                "UPDATE store_details_table SET latitude = COALESCE(latitude_column1, latitude_column2);",
+                "ALTER TABLE store_details_table ALTER COLUMN longitude TYPE FLOAT USING longitude::FLOAT;",
+                "ALTER TABLE store_details_table ALTER COLUMN locality TYPE VARCHAR(255);",
+                "ALTER TABLE store_details_table ALTER COLUMN store_code TYPE VARCHAR(?);",  # Replace ? with the actual maximum length
+                "ALTER TABLE store_details_table ALTER COLUMN staff_numbers TYPE SMALLINT;",
+                "ALTER TABLE store_details_table ALTER COLUMN opening_date TYPE DATE;",
+                "ALTER TABLE store_details_table ALTER COLUMN store_type TYPE VARCHAR(255) NULL;",
+                "ALTER TABLE store_details_table ALTER COLUMN latitude TYPE FLOAT USING latitude::FLOAT;",
+                "ALTER TABLE store_details_table ALTER COLUMN country_code TYPE VARCHAR(?);",  # Replace ? with the actual maximum length
+                "ALTER TABLE store_details_table ALTER COLUMN continent TYPE VARCHAR(255);",
+                "UPDATE store_details_table SET location = 'N/A' WHERE location IS NULL;" 
+            ]
+
+            #Execute the SQL statements
+            for sql_statements in sql_statements:
+                self.conn.execute(sql_statements)
+
+            print("store_details_table updated successfully.")
+            
+        except Exception as e:
+            print(f"Error updating store_details_table: {e}")    
+
+
     def disconnect(self):
         if self.conn:
             self.conn.close()
