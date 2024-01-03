@@ -78,13 +78,29 @@ class DatabaseConnector:
 
             #Execute the SQL statements
             for sql_statements in sql_statements:
-                self.conn.execute(sql_statements)
+                self.execute_sql_query(sql_statements)
 
             print("store_details_table updated successfully.")
-            
+
         except Exception as e:
             print(f"Error updating store_details_table: {e}")    
 
+    def execute_sql_query(self, query):
+        try:
+            if not self.conn or self.conn.closed:
+                print("Database connection is not established.")
+                return
+
+            # Convert the query string to a SQL text object
+            sql_query = text(query)
+
+            # Execute the query
+            self.conn.execute(sql_query)
+
+            print("SQL query executed successfully.")
+
+        except Exception as e:
+            print(f"Error executing SQL query: {e}")     
 
     def disconnect(self):
         if self.conn:

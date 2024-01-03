@@ -19,8 +19,8 @@ db_uploader=DatabaseUploader()
 db_connector.init_db_engine()
 
 # Step 2
-tables = db_connector.list_db_tables()
-print("Available tables:", tables)
+# tables = db_connector.list_db_tables()
+# print("Available tables:", tables)
 # table_name ="orders_table"
 # raw_data = data_extractor.read_rds_table(db_connector, table_name)
 # print(raw_data)
