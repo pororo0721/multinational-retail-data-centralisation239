@@ -61,17 +61,20 @@ class DatabaseConnector:
                 print("Database connection is not established.")
                 return
 
+            # SQL statement to merge latitude columns
+            merge_latitude_sql = "UPDATE legacy_store_details SET latitude = COALESCE(lat, latitude);"
+            self.execute_sql_query(merge_latitude_sql)    
+
         # SQL statements for updating legacy_store_details
             sql_statements = [
-                "UPDATE legacy_store_details SET latitude = COALESCE(lat, latitude);",
                 "ALTER TABLE legacy_store_details ALTER COLUMN longitude TYPE FLOAT USING longitude::FLOAT;",
                 "ALTER TABLE legacy_store_details ALTER COLUMN locality TYPE VARCHAR(255);",
-                "ALTER TABLE legacy_store_details ALTER COLUMN store_code TYPE VARCHAR(255);",  
+                "ALTER TABLE legacy_store_details ALTER COLUMN store_code TYPE VARCHAR(255);",
                 "ALTER TABLE legacy_store_details ALTER COLUMN staff_numbers TYPE SMALLINT;",
                 "ALTER TABLE legacy_store_details ALTER COLUMN opening_date TYPE DATE;",
                 "ALTER TABLE legacy_store_details ALTER COLUMN store_type TYPE VARCHAR(255) NULL;",
                 "ALTER TABLE legacy_store_details ALTER COLUMN latitude TYPE FLOAT USING latitude::FLOAT;",
-                "ALTER TABLE legacy_store_details ALTER COLUMN country_code TYPE VARCHAR(255);",
+                "ALTER TABLE legacy_store_details ALTER COLUMN country_code TYPE VARCHAR(?);",  # Replace '?' with desired length
                 "ALTER TABLE legacy_store_details ALTER COLUMN continent TYPE VARCHAR(255);",
                 "UPDATE legacy_store_details SET location = 'N/A' WHERE location IS NULL;"
             ]

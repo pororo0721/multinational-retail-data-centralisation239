@@ -174,7 +174,7 @@ print("Available tables:", tables)
 db_connector.update_legacy_store_details()
 
 # Disconnect from the database
-db_connector.disconnect()
+# db_connector.disconnect()
 
 # if 'legacy_store_details' in tables:
 #     # Print the structure of the 'legacy_store_details' table
