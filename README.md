@@ -1,4 +1,4 @@
-# multinational-retail-data-centralisation239
+# Multinational Retail Data Centralisation
 
 ## _Milestone 2: Extract and clean the data from the data sources_
 
@@ -43,11 +43,11 @@ The classes will be structured to handle data from different sources.
 
 - Skills Learned: JSON data handling, data transformation, ETL (Extract, Transform, Load) processes.
 
-## Aim of the Project
+###  Aim of the Project
 
 The aim of this project is to develop a robust system for extracting, cleaning and storing data from various sources. This system will enable efficient data analysis and reporting, aiding in better decision-making processes.
 
-## What I learned
+###  What I learned
 
 - Comprehensive Data Handling: How to manage and process data from diverse sources like databases, APIs, CSV, PDFs, and JSON files
 
@@ -61,6 +61,6 @@ The aim of this project is to develop a robust system for extracting, cleaning a
 
 - Problem-Solving: Developing solutions for complex data handling tasks
 
-### License
+## License
 This project is licensed under the MIT License
 [MIT](https://choosealicense.com/licenses/mit/)
