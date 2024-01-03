@@ -63,15 +63,15 @@ class DatabaseConnector:
 
         # SQL statements for updating legacy_store_details
             sql_statements = [
-                "UPDATE legacy_store_details SET latitude = COALESCE(latitude_column1, latitude_column2);",
+                "UPDATE legacy_store_details SET latitude = COALESCE(lat, latitude);",
                 "ALTER TABLE legacy_store_details ALTER COLUMN longitude TYPE FLOAT USING longitude::FLOAT;",
                 "ALTER TABLE legacy_store_details ALTER COLUMN locality TYPE VARCHAR(255);",
-                "ALTER TABLE legacy_store_details ALTER COLUMN store_code TYPE VARCHAR(255);",  # Replace with the actual length
+                "ALTER TABLE legacy_store_details ALTER COLUMN store_code TYPE VARCHAR(255);",  
                 "ALTER TABLE legacy_store_details ALTER COLUMN staff_numbers TYPE SMALLINT;",
                 "ALTER TABLE legacy_store_details ALTER COLUMN opening_date TYPE DATE;",
                 "ALTER TABLE legacy_store_details ALTER COLUMN store_type TYPE VARCHAR(255) NULL;",
                 "ALTER TABLE legacy_store_details ALTER COLUMN latitude TYPE FLOAT USING latitude::FLOAT;",
-                "ALTER TABLE legacy_store_details ALTER COLUMN country_code TYPE VARCHAR(255);",  # Replace with the actual length
+                "ALTER TABLE legacy_store_details ALTER COLUMN country_code TYPE VARCHAR(255);",
                 "ALTER TABLE legacy_store_details ALTER COLUMN continent TYPE VARCHAR(255);",
                 "UPDATE legacy_store_details SET location = 'N/A' WHERE location IS NULL;"
             ]

@@ -1,6 +1,7 @@
 from database_utils import DatabaseConnector, DatabaseUploader
 from data_extraction import DataExtractor
 from data_cleaning import DataCleaning
+from sqlalchemy import inspect 
 
 # Create a DatabaseConnector instance
 db_connector = DatabaseConnector()
@@ -174,3 +175,9 @@ db_connector.update_legacy_store_details()
 
 # Disconnect from the database
 db_connector.disconnect()
+
+# if 'legacy_store_details' in tables:
+#     # Print the structure of the 'legacy_store_details' table
+#     print(f"Columns in 'legacy_store_details': {inspect(db_connector.conn).get_columns('legacy_store_details')}")
+# else:
+#     print("'legacy_store_details' table not found.")
