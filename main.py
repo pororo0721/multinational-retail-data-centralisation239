@@ -19,8 +19,8 @@ db_uploader=DatabaseUploader()
 db_connector.init_db_engine()
 
 # Step 2
-# tables = db_connector.list_db_tables()
-# print("Available tables:", tables)
+tables = db_connector.list_db_tables()
+print("Available tables:", tables)
 # table_name ="orders_table"
 # raw_data = data_extractor.read_rds_table(db_connector, table_name)
 # print(raw_data)
@@ -170,7 +170,7 @@ db_connector.init_db_engine()
 # Task 3: Update the dim_store_details table
 
 # Update store_details_table
-db_connector.update_store_details_table()
+db_connector.update_legacy_store_details()
 
 # Disconnect from the database
 db_connector.disconnect()

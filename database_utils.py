@@ -55,35 +55,36 @@ class DatabaseConnector:
         except Exception as e:
             print(f"Error changing data types: {e}") 
 
-    def update_store_details_table(self):
+    def update_legacy_store_details(self):
         try:
             if not self.conn or self.conn.closed:
                 print("Database connection is not established.")
                 return
 
-            #SQL statements for updating store_details_table 
-            sql_statements=[
-                "UPDATE store_details_table SET latitude = COALESCE(latitude_column1, latitude_column2);",
-                "ALTER TABLE store_details_table ALTER COLUMN longitude TYPE FLOAT USING longitude::FLOAT;",
-                "ALTER TABLE store_details_table ALTER COLUMN locality TYPE VARCHAR(255);",
-                "ALTER TABLE store_details_table ALTER COLUMN store_code TYPE VARCHAR(?);",  # Replace ? with the actual maximum length
-                "ALTER TABLE store_details_table ALTER COLUMN staff_numbers TYPE SMALLINT;",
-                "ALTER TABLE store_details_table ALTER COLUMN opening_date TYPE DATE;",
-                "ALTER TABLE store_details_table ALTER COLUMN store_type TYPE VARCHAR(255) NULL;",
-                "ALTER TABLE store_details_table ALTER COLUMN latitude TYPE FLOAT USING latitude::FLOAT;",
-                "ALTER TABLE store_details_table ALTER COLUMN country_code TYPE VARCHAR(?);",  # Replace ? with the actual maximum length
-                "ALTER TABLE store_details_table ALTER COLUMN continent TYPE VARCHAR(255);",
-                "UPDATE store_details_table SET location = 'N/A' WHERE location IS NULL;" 
+        # SQL statements for updating legacy_store_details
+            sql_statements = [
+                "UPDATE legacy_store_details SET latitude = COALESCE(latitude_column1, latitude_column2);",
+                "ALTER TABLE legacy_store_details ALTER COLUMN longitude TYPE FLOAT USING longitude::FLOAT;",
+                "ALTER TABLE legacy_store_details ALTER COLUMN locality TYPE VARCHAR(255);",
+                "ALTER TABLE legacy_store_details ALTER COLUMN store_code TYPE VARCHAR(255);",  # Replace with the actual length
+                "ALTER TABLE legacy_store_details ALTER COLUMN staff_numbers TYPE SMALLINT;",
+                "ALTER TABLE legacy_store_details ALTER COLUMN opening_date TYPE DATE;",
+                "ALTER TABLE legacy_store_details ALTER COLUMN store_type TYPE VARCHAR(255) NULL;",
+                "ALTER TABLE legacy_store_details ALTER COLUMN latitude TYPE FLOAT USING latitude::FLOAT;",
+                "ALTER TABLE legacy_store_details ALTER COLUMN country_code TYPE VARCHAR(255);",  # Replace with the actual length
+                "ALTER TABLE legacy_store_details ALTER COLUMN continent TYPE VARCHAR(255);",
+                "UPDATE legacy_store_details SET location = 'N/A' WHERE location IS NULL;"
             ]
 
-            #Execute the SQL statements
-            for sql_statements in sql_statements:
-                self.execute_sql_query(sql_statements)
+            # Execute the SQL statements
+            for sql_statement in sql_statements:
+                self.execute_sql_query(sql_statement)
 
-            print("store_details_table updated successfully.")
+            print("legacy_store_details updated successfully.")
 
         except Exception as e:
-            print(f"Error updating store_details_table: {e}")    
+            print(f"Error updating legacy_store_details: {e}")
+
 
     def execute_sql_query(self, query):
         try:
