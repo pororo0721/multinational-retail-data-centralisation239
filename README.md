@@ -61,6 +61,15 @@ The aim of this project is to develop a robust system for extracting, cleaning a
 
 - Problem-Solving: Developing solutions for complex data handling tasks
 
+## Milestone 3: Create the database schema
+
+### Task 1: Cast the columns of the orders_table to the correct data types
+
+### Task 2: Cast the columns of the dim_users_table to the correct data types
+
+### Task 3: Update the dim_store table
+
+
 ## License
 This project is licensed under the MIT License
 [MIT](https://choosealicense.com/licenses/mit/)
