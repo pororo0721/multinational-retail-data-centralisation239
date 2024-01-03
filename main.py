@@ -2,16 +2,20 @@ from database_utils import DatabaseConnector, DatabaseUploader
 from data_extraction import DataExtractor
 from data_cleaning import DataCleaning
 
-
+# Create a DatabaseConnector instance
 db_connector = DatabaseConnector()
+# Create a DataExtractor instance
 data_extractor = DataExtractor()
+# Create a DataCleaning instance
 data_cleaning = DataCleaning()
+# Create a DatabaseUploader instance
 db_uploader=DatabaseUploader()
 
 # Milstone 2: Extract and clean the data from the data sources
 
 # Task 3: Extract amd clean the user data
 # Step 1
+# Initialize the database connection
 db_connector.init_db_engine()
 
 # Step 2
@@ -162,3 +166,11 @@ print("Available tables:", tables)
 
 # Disconnect from the database
 # db_connector.disconnect()
+
+# Task 3: Update the dim_store_details table
+
+# Update store_details_table
+db_connector.update_store_details_table()
+
+# Disconnect from the database
+db_connector.disconnect()
