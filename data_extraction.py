@@ -4,6 +4,8 @@ import requests
 import boto3
 from io import StringIO
 from urllib.parse import urlsplit
+from botocore.exceptions import NoCredentialsError
+
 
 class DataExtractor:
     
@@ -63,7 +65,7 @@ class DataExtractor:
 
 
     @staticmethod
-    def extract_s3(s3_address):
+    def extract_s3(s3_address, s3_client):
   
         try:
             # Extract buckey_name and object_key from the S3 address
@@ -92,10 +94,13 @@ class DataExtractor:
             print(f"Error extracting data from s3: {e}")
             return None
 
-    @staticmethod
-    def extract_s3_products(s3_address):
+    
+    def extract_s3_products(self, s3_address):
         try:
-            return self.extract_s3(s3_address)
+            s3_client = boto3.client('s3')
+            return self.extract_s3(s3_address, s3_client)
+        except NoCredentialsError:
+            print("No AWS credentials found. Please configure your AWS CLI")    
         except Exception as e:
             print(f"Error extracting products from s3: {e}")
             return None    

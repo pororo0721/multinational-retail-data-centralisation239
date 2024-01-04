@@ -87,8 +87,7 @@ class DatabaseConnector:
 
         except Exception as e:
             print(f"Error updating legacy_store_details: {e}")
-
-
+      
     def execute_sql_query(self, query):
         try:
             if not self.conn or self.conn.closed:
@@ -105,6 +104,7 @@ class DatabaseConnector:
 
         except Exception as e:
             print(f"Error executing SQL query: {e}")     
+
 
     def disconnect(self):
         if self.conn:

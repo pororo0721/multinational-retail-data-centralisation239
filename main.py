@@ -190,3 +190,4 @@ print("Available tables:", tables)
 
 # Task 4: Make changes to the dim_products table for the delivery team.
 
+products_df= data_extractor.extract_s3_products('s3://data-handling-public/products.csv')
