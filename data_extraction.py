@@ -92,7 +92,13 @@ class DataExtractor:
             print(f"Error extracting data from s3: {e}")
             return None
 
-
+    @staticmethod
+    def extract_s3_products(s3_address):
+        try:
+            return self.extract_s3(s3_address)
+        except Exception as e:
+            print(f"Error extracting products from s3: {e}")
+            return None    
 
     @staticmethod
     def extract_json(s3_address):
