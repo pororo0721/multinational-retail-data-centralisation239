@@ -120,6 +120,7 @@ class DatabaseConnector:
 
 # inherit from DatabaseConnector
 class DatabaseUploader(DatabaseConnector):
+
     def upload_card_data(self, data, table_name):
         try:
             self.init_db_engine()
@@ -134,4 +135,34 @@ class DatabaseUploader(DatabaseConnector):
             print(f"Error uploading data to the database: {e}")      
         finally:
             self.disconnect()
-            print("Disconnected from the database.")              
+            print("Disconnected from the database.") 
+
+    def update_products_table(self):
+        try:
+            update_product_price_sql ="UPDATE dim_products SET product_price = REPLACE(product_price, '£','')::FLOAT;"
+            self.execute_sql_query(update_product_price_sql)
+
+            add_weight_class_sql= """
+                ALTER TABLE dim_products
+                ADD COLUMN weight_class VARCHAR(255);
+            """
+
+            self.execute_sql_query(add_weight_class_sql)
+
+            update_weight_class_sql = """
+                UPDATE dim_products
+                SET weight_class =
+                    CASE
+                        WHEN weight <2 THEN 'Light'
+                        WHEN weight >= 2 AND weight < 40 THEN  'Mid_Sized'
+                        WHEN weight >= 40 AND weight <140 THEN 'Heavy'
+                        WHEN weight >= 140 THEN 'Truck_Required'
+                        ELSE 'Unknown'
+                END;
+            """
+            self.execute_sql_query(update_weight_class_sql)
+
+            print("Products table updated sucessfully.")
+
+        except Exception as e:
+            print(f"Error updating products table: {e}")                   
