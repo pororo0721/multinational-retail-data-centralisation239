@@ -171,7 +171,7 @@ print("Available tables:", tables)
 # Task 3: Update the dim_store_details table
 
 # Update store_details_table
-db_connector.update_legacy_store_details()
+# db_connector.update_legacy_store_details()
 
 # Disconnect from the database
 # db_connector.disconnect()
@@ -181,3 +181,12 @@ db_connector.update_legacy_store_details()
 #     print(f"Columns in 'legacy_store_details': {inspect(db_connector.conn).get_columns('legacy_store_details')}")
 # else:
 #     print("'legacy_store_details' table not found.")
+
+# if 'orders_table' in tables:
+#     # Print the structure of the 'orders_table' table
+#     print(f"Columns in 'orders_table': {inspect(db_connector.conn).get_columns('orders_table')}")
+# else:
+#     print("'orders_table' table not found.")
+
+# Task 4: Make changes to the dim_products table for the delivery team.
+

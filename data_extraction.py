@@ -63,16 +63,6 @@ class DataExtractor:
 
 
     @staticmethod
-    def extract_csv(file_path):
-        # Method to extract data from CSV file
-        pass
-
-    @staticmethod
-    def extract_api(api_url):
-        # Method to extract data from an API
-        pass
-
-    @staticmethod
     def extract_s3(s3_address):
   
         try:
@@ -100,7 +90,9 @@ class DataExtractor:
 
         except Exception as e:
             print(f"Error extracting data from s3: {e}")
-            return None   
+            return None
+
+
 
     @staticmethod
     def extract_json(s3_address):
