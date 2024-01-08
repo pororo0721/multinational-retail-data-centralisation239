@@ -197,15 +197,27 @@ print("Available tables:", tables)
 
 # Task 5: Update the dim_products table with the required data types.
 
+# column_data_types ={
+#     'product_price': 'FLOAT',
+#     'weight': 'FLOAT',
+#     'EAN': 'VARCHAR(255)',  # Replace 255 with the actual length needed
+#     'product_code': 'VARCHAR(255)',
+#     'date_added': 'DATE',
+#     'uuid': 'UUID',
+#     'still_available': 'BOOL',
+#     'weight_class': 'VARCHAR(255)'
+# }
+
+# db_connector.change_data_types('dim_products', column_data_types)
+
+# Task 6: Update the dim_date_times table.
+
 column_data_types ={
-    'product_price': 'FLOAT',
-    'weight': 'FLOAT',
-    'EAN': 'VARCHAR(255)',  # Replace 255 with the actual length needed
-    'product_code': 'VARCHAR(255)',
-    'date_added': 'DATE',
-    'uuid': 'UUID',
-    'still_available': 'BOOL',
-    'weight_class': 'VARCHAR(255)'
+        "month": "VARCHAR(255)",  
+        "year": "VARCHAR(255)",   
+        "day": "VARCHAR(255)",    
+        "time_period": "VARCHAR(255)",  
+        "date_uuid": "UUID"
 }
 
-db_connector.change_data_types('dim_products', column_data_types)
+db_connector.change_data_types('dim_data_times', column_data_types)
