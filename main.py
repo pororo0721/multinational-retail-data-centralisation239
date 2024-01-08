@@ -190,7 +190,22 @@ print("Available tables:", tables)
 
 # Task 4: Make changes to the dim_products table for the delivery team.
 
-products_df= data_extractor.extract_s3_products('s3://data-handling-public/products.csv')
+# products_df= data_extractor.extract_s3_products('s3://data-handling-public/products.csv')
 
-db_uploader.init_db_engine()
-db_uploader.update_products_table()
+# db_uploader.init_db_engine()
+# db_uploader.update_products_table()
+
+# Task 5: Update the dim_products table with the required data types.
+
+column_data_types ={
+    'product_price': 'FLOAT',
+    'weight': 'FLOAT',
+    'EAN': 'VARCHAR(255)',  # Replace 255 with the actual length needed
+    'product_code': 'VARCHAR(255)',
+    'date_added': 'DATE',
+    'uuid': 'UUID',
+    'still_available': 'BOOL',
+    'weight_class': 'VARCHAR(255)'
+}
+
+db_connector.change_data_types('dim_products', column_data_types)
