@@ -64,11 +64,25 @@ The aim of this project is to develop a robust system for extracting, cleaning a
 ## Milestone 3: Create the database schema
 
 ### Task 1: Cast the columns of the orders_table to the correct data types
-
 ### Task 2: Cast the columns of the dim_users_table to the correct data types
-
 ### Task 3: Update the dim_store table
+### Task 4: Make changes to the dim_products table for the delivery team
+### Task 5: Update the dim_products table with the required data types
+###  Task 6: Update the dim_date_times table
+### Task 7: Updating the dim_card_details table
+### Task 8: Create the primary keys in the dimension tables
 
+## Milestone 4: Querying the data
+
+### Task 1: How many stores does the business have and in which conuntries?
+### Task 2: Which locations currently have the most stores?
+### Task 3: Which months produced the largest amount of sales?
+### Task 4: How many sales are coming from online?
+### Task 5: What percentage of sales come through each type of store?
+### Task 6: Which hmonth in each year produced the highest cost of sales?
+### Task 7: What is our staff headcount?
+### Task 8: Which German store type is selling the most?
+### Task 9: How quickly is the company making sales?
 
 ## License
 This project is licensed under the MIT License
