@@ -212,12 +212,16 @@ print("Available tables:", tables)
 
 # Task 6: Update the dim_date_times table.
 
-column_data_types ={
-        "month": "VARCHAR(255)",  
-        "year": "VARCHAR(255)",   
-        "day": "VARCHAR(255)",    
-        "time_period": "VARCHAR(255)",  
-        "date_uuid": "UUID"
-}
+# column_data_types ={
+#         "month": "VARCHAR(255)",  
+#         "year": "VARCHAR(255)",   
+#         "day": "VARCHAR(255)",    
+#         "time_period": "VARCHAR(255)",  
+#         "date_uuid": "UUID"
+# }
 
-db_connector.change_data_types('dim_data_times', column_data_types)
+# db_connector.change_data_types('dim_data_times', column_data_types)
+
+# Task 7: Updating the dim_card_details table.
+
+
