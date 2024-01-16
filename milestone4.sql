@@ -20,3 +20,12 @@ ORDER BY total_sales DESC;
 SELECT COUNT(*) as numbers_of_sales, SUM(product_quantity) as product_quantity_count, location
 FROM sales
 GROUP BY location;
+
+-- Task 5:
+
+SELECT
+    store_type,
+    SUM(sales) as total_sales,
+    (SUM(sales) / (SELECT SUM(sales) FROM sales)) * 100 as percentage_total
+FROM sales
+GROUP BY store_type;    
