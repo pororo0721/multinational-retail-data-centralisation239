@@ -28,4 +28,14 @@ SELECT
     SUM(sales) as total_sales,
     (SUM(sales) / (SELECT SUM(sales) FROM sales)) * 100 as percentage_total
 FROM sales
-GROUP BY store_type;    
+GROUP BY store_type;  
+
+-- Task 6:
+
+SELECT
+    SUM(sales) as total_sales,
+    YEAR(sales_date) as year,
+    MONTH(sales_date) as month,
+FROM sales
+GROUP BY year, month
+ORDER BY total_sales DESC;    
