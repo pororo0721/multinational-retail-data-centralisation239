@@ -9,3 +9,9 @@ SELECT locality, COUNT(*) as total_no_stores
 FROM stores
 GROUP BY locality
 ORDER BY total_no_stores DESC;
+
+-- Task 3:
+SELECT SUM(sales) as total_no_stores, MONTH(sales_date) as month
+FROM sales
+GROUP BY month
+ORDER BY total_sales DESC;
