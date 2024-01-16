@@ -15,3 +15,8 @@ SELECT SUM(sales) as total_no_stores, MONTH(sales_date) as month
 FROM sales
 GROUP BY month
 ORDER BY total_sales DESC;
+
+-- Task 4:
+SELECT COUNT(*) as numbers_of_sales, SUM(product_quantity) as product_quantity_count, location
+FROM sales
+GROUP BY location;
