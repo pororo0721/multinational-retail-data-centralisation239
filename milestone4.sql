@@ -52,3 +52,10 @@ WHERE country_code ='DE'
 GROUP BY store_type, country_code
 ORDER BY total_sales DESC;
 
+-- Task 9:
+SELECT
+    EXTRACT(YEAR FROM sale_time) AS year,
+    AVG(EXTRACT(EPOCH FROM (LEAD(sale_time) OVER(PARTITION BY EXTRACT(YEAR FROM sale_time) ORDER BY sale_time) - sale_time))) AS actual_time_taken
+FROM sales
+GROUP BY year
+ORDER BY year;    
