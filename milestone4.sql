@@ -44,3 +44,11 @@ ORDER BY total_sales DESC;
 SELECT COUNT(staff_id) AS total_staff_numbers, country_code
 FROM staff_id
 GROUP BY country_code;
+
+-- Task 8:
+SELECT SUM(total_sales) AS total_sales, store_type, country_code
+FROM sales
+WHERE country_code ='DE'
+GROUP BY store_type, country_code
+ORDER BY total_sales DESC;
+
