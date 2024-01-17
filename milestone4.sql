@@ -39,3 +39,8 @@ SELECT
 FROM sales
 GROUP BY year, month
 ORDER BY total_sales DESC;    
+
+-- Task 7:
+SELECT COUNT(staff_id) AS total_staff_numbers, country_code
+FROM staff_id
+GROUP BY country_code;
